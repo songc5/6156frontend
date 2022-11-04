@@ -2,7 +2,7 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
-
+import { Link } from 'react-router-dom';
 const StudentsTable = props => {
   return (
     <>
@@ -22,6 +22,9 @@ const StudentsTable = props => {
                 <td>{student.uni}</td>
                 <td>{student.first_name}</td>
                 <td>{student.last_name}</td>
+                <td>
+                  <Link to={student.links.contact}>Contacts</Link>
+                </td>
                 <td>
                   <Button onClick={() => props.deleteStudent(student.uni)}>Delete</Button>
                 </td>

@@ -24,6 +24,30 @@ class APIService {
   addStudent(data) {
     return instance.post('/students', data);
   }
+
+  getEmail(uni) {
+    return instance.get(`/students/${uni}/emails`);
+  }
+
+  addEmail(uni, data) {
+    return instance.post(`/students/${uni}/emails`, data);
+  }
+
+  getAddress(uni) {
+    return instance.get(`/students/${uni}/addresses`);
+  }
+
+  addAddress(uni, data) {
+    return instance.post(`/students/${uni}/addresses`, data);
+  }
+
+  getPhone(uni) {
+    return instance.get(`/students/${uni}/phones`);
+  }
+
+  addPhone(uni, data) {
+    return instance.post(`/students/${uni}/phones`, data);
+  }
 }
 
 export default new APIService();
