@@ -4,12 +4,21 @@ import APIService from '../../api/apiservice';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
+import Phones from './Phones';
+import Emails from './Emails';
+import Address from './Address';
 export default function Contacts() {
   const { uni } = useParams();
-  const [phone, setPhone] = useState();
-  const [email, setEmail] = useState();
-  const [address, setAddress] = useState();
+  const [phone, setPhone] = useState(12345);
+  const [email, setEmail] = useState('abc@gmail.com');
+  const [address, setAddress] = useState({
+    address_id: 0,
+    address1: 'string',
+    address2: 'string',
+    city: 'string',
+    state: 'string',
+    zip_code: 0,
+  });
 
   useEffect(() => {
     Promise.all([
@@ -35,7 +44,7 @@ export default function Contacts() {
           console.error('Get Address Error:', error);
         }),
     ]);
-  });
+  }, []);
 
   return (
     <>
@@ -45,30 +54,9 @@ export default function Contacts() {
             <h1>Contact of {uni}</h1>
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <div>Phone:</div>
-          </Col>
-          <Col>
-            <div>{phone}</div>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <div>Email:</div>
-          </Col>
-          <Col>
-            <div>{email}</div>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <div>Address:</div>
-          </Col>
-          <Col>
-            <div>{address}</div>
-          </Col>
-        </Row>
+        <Phones phone={phone} setPhone={setPhone} uni={uni} />
+        <Emails email={email} setEmail={setEmail} uni={uni} />
+        <Address address={address} setAddress={setAddress} uni={uni} />
       </Container>
     </>
   );
